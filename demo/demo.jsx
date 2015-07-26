@@ -14,14 +14,14 @@ class AsForm extends React.Component {
   handleChange(text) {
     console.log(text);
   }
-  handleHeightChange() {
-    console.log('height changed');
+  handleHeightChange(height, prevHeight) {
+    console.log(`height changed: from ${prevHeight} to ${height}`);
   }
   render() {
     return (
       <div>
         <div>
-          <Textarea ref="textarea" rows={3} maxRows={5} minRows={1} onHeightChange={this.handleHeightChange} onChange={this.handleChange}/>
+          <Textarea value="please write something" ref="textarea" rows={3} maxRows={5} minRows={3} onHeightChange={this.handleHeightChange} onChange={this.handleChange}/>
         </div>
         <div>
           <button className="submit" onClick={this.handleSubmit.bind(this)}>提交</button>
