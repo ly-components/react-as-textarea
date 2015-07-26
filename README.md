@@ -38,7 +38,7 @@ maxRows: React.PropTypes.number //最大行数
 ## Development
 
 ```bash
-$ node server.js
+$ npm start
 $ open http://127.0.0.1:3000/demo/demo.html
 ```
 
