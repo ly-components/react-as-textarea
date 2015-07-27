@@ -20,6 +20,7 @@ export default class Textarea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      value: props.value,
       height: null,
       minHeight: -Infinity,
       maxHeight: Infinity
@@ -33,6 +34,9 @@ export default class Textarea extends React.Component {
   handleChange(e) {
     this._resize();
     this.props.onChange(e.target.value);
+    this.setState({
+      value: e.target.value
+    });
   }
   handleHeightChange() {
     this.props.onHeightChange();
@@ -49,6 +53,7 @@ export default class Textarea extends React.Component {
   render() {
     var {
       onChange,
+      value,
       ...props
     } = this.props;
     props = {...props};
@@ -59,7 +64,7 @@ export default class Textarea extends React.Component {
     let maxHeight = Math.max( props.style.maxHeight ? props.style.maxHeight : Infinity, this.state.maxHeight);
     if (maxHeight < this.state.height) props.style.overflow = 'hidden';
     return (
-      <textarea {...props} onChange={this.handleChange}/>
+      <textarea {...props} value={this.state.value} onChange={this.handleChange}/>
     );
   }
 }
