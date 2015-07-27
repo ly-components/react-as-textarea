@@ -75,7 +75,6 @@ export default function calculateHeight(textarea, minRows, maxRows) {
 
   if (minRows !== null || maxRows !== null) {
     let singleRowHeight = getSingleRowHeight(shadowTextarea) + heightAdjust;
-    console.log(singleRowHeight, heightAdjust);
     if (minRows !== null) {
       minHeight = singleRowHeight * minRows;
       height = Math.max(minHeight, height);
@@ -86,7 +85,6 @@ export default function calculateHeight(textarea, minRows, maxRows) {
     }
   }
 
-  console.log(height, maxHeight, minHeight);
   return {
     height, minHeight, maxHeight
   };

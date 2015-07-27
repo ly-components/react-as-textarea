@@ -1,6 +1,6 @@
 {
   "name": "react-as-textarea",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A react auto resize textarea",
   "main": "src/index.js",
   "scripts": {
