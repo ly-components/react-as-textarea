@@ -2,6 +2,8 @@
 
 一个React实现的自适应大小的textarea
 
+[DEMO](http://lingyucoder.github.io/react-as-textarea/demo/demo.html)
+
 ## Install
 
 ```
