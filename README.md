@@ -33,9 +33,13 @@ maxRows: React.PropTypes.number //最大行数
 
 ## Methods
 
-### getValue(value:string)
+### string getValue()
 
 获取textarea的当前值
+
+### setValue(string)
+
+设置textarea的值
 
 ## Development
 

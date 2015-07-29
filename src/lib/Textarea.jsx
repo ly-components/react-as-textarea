@@ -29,14 +29,21 @@ export default class Textarea extends React.Component {
     this._resize = this._resize.bind(this);
   }
   getValue() {
-    return React.findDOMNode(this).value;
+    return this.state.value;
+  }
+  setValue(value) {
+    this.setState({
+      value: value
+    });
+    this.props.onChange(value);
   }
   handleChange(e) {
     this._resize();
-    this.props.onChange(e.target.value);
+    var value = e.target.value;
     this.setState({
-      value: e.target.value
+      value: value
     });
+    this.props.onChange(value);
   }
   handleHeightChange() {
     this.props.onHeightChange();

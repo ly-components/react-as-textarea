@@ -9,13 +9,16 @@ class AsForm extends React.Component {
     this.state = {};
   }
   handleSubmit() {
-    console.log(this.refs.textarea.getValue())
+    alert(this.refs.textarea.getValue());
   }
   handleChange(text) {
     console.log(text);
   }
   handleHeightChange(height, prevHeight) {
     console.log(`height changed: from ${prevHeight} to ${height}`);
+  }
+  handleReset() {
+    this.refs.textarea.setValue('default value');
   }
   render() {
     return (
@@ -25,6 +28,7 @@ class AsForm extends React.Component {
         </div>
         <div>
           <button className="submit" onClick={this.handleSubmit.bind(this)}>提交</button>
+          <button className="submit" onClick={this.handleReset.bind(this)}>重置</button>
         </div>
       </div>
     );

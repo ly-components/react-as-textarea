@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c202e3d38d65b567d9df"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b933db13bf8956952f44"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -7998,7 +7998,7 @@
 	  _createClass(AsForm, [{
 	    key: 'handleSubmit',
 	    value: function handleSubmit() {
-	      console.log(this.refs.textarea.getValue());
+	      alert(this.refs.textarea.getValue());
 	    }
 	  }, {
 	    key: 'handleChange',
@@ -8009,6 +8009,11 @@
 	    key: 'handleHeightChange',
 	    value: function handleHeightChange(height, prevHeight) {
 	      console.log('height changed: from ' + prevHeight + ' to ' + height);
+	    }
+	  }, {
+	    key: 'handleReset',
+	    value: function handleReset() {
+	      this.refs.textarea.setValue('default value');
 	    }
 	  }, {
 	    key: 'render',
@@ -8028,6 +8033,11 @@
 	            'button',
 	            { className: 'submit', onClick: this.handleSubmit.bind(this) },
 	            '提交'
+	          ),
+	          _react2['default'].createElement(
+	            'button',
+	            { className: 'submit', onClick: this.handleReset.bind(this) },
+	            '重置'
 	          )
 	        )
 	      );
@@ -28907,16 +28917,25 @@
 	  _createClass(Textarea, [{
 	    key: 'getValue',
 	    value: function getValue() {
-	      return _react2['default'].findDOMNode(this).value;
+	      return this.state.value;
+	    }
+	  }, {
+	    key: 'setValue',
+	    value: function setValue(value) {
+	      this.setState({
+	        value: value
+	      });
+	      this.props.onChange(value);
 	    }
 	  }, {
 	    key: 'handleChange',
 	    value: function handleChange(e) {
 	      this._resize();
-	      this.props.onChange(e.target.value);
+	      var value = e.target.value;
 	      this.setState({
-	        value: e.target.value
+	        value: value
 	      });
+	      this.props.onChange(value);
 	    }
 	  }, {
 	    key: 'handleHeightChange',
