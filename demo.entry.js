@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b933db13bf8956952f44"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "be75b732382c35635ce7"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -7983,7 +7983,7 @@
 
 	var _srcIndex2 = _interopRequireDefault(_srcIndex);
 
-	__webpack_require__(235);
+	__webpack_require__(231);
 
 	var AsForm = (function (_React$Component) {
 	  function AsForm() {
@@ -28853,8 +28853,6 @@
 
 	var _libTextarea2 = _interopRequireDefault(_libTextarea);
 
-	__webpack_require__(231);
-
 	exports['default'] = _libTextarea2['default'];
 	module.exports = exports['default'];
 
@@ -29026,11 +29024,15 @@
 	  var computedStyle = window.getComputedStyle(textarea);
 	  var boxSizing = getPrefixedStyle(computedStyle, 'box-sizing');
 	  var heightAdjust = 0;
-	  if (boxSizing === 'border-box') heightAdjust += getStyleNumber(computedStyle, 'border-top-width') + getStyleNumber(computedStyle, 'border-bottom-width');else if (boxSizing === 'content-box') heightAdjust -= getStyleNumber(computedStyle, 'padding-top') + getStyleNumber(computedStyle, 'padding-bottom');
+	  var padding = getStyleNumber(computedStyle, 'padding-top') + getStyleNumber(computedStyle, 'padding-bottom');
+	  var border = getStyleNumber(computedStyle, 'border-bottom-width') + getStyleNumber(computedStyle, 'border-top-width');
+	  if (boxSizing === 'border-box') heightAdjust += border;else if (boxSizing === 'content-box') heightAdjust -= padding;
 	  return {
 	    styles: STYLES.map(function (name) {
-	      return '' + name + ':' + computedStyle.getPropertyValue(name);
+	      return name + ':' + computedStyle.getPropertyValue(name);
 	    }),
+	    padding: padding,
+	    border: border,
 	    heightAdjust: heightAdjust
 	  };
 	}
@@ -29057,11 +29059,11 @@
 
 	function calculateHeight(textarea, minRows, maxRows) {
 	  if (!shadowTextarea) document.body.appendChild(shadowTextarea = document.createElement('textarea'));
-
-	  var _getStyleInfo = getStyleInfo(textarea);
-
-	  var styles = _getStyleInfo.styles;
-	  var heightAdjust = _getStyleInfo.heightAdjust;
+	  var _styleInfo = getStyleInfo(textarea);
+	  var styles = _styleInfo.styles;
+	  var heightAdjust = _styleInfo.heightAdjust;
+	  var padding = _styleInfo.padding;
+	  var border = _styleInfo.border;
 
 	  shadowTextarea.setAttribute('style', styles.concat(HIDDEN_TEXTAREA_STYLE).join(';'));
 	  shadowTextarea.value = textarea.value;
@@ -29070,19 +29072,21 @@
 	  var maxHeight = Infinity;
 
 	  if (minRows !== null || maxRows !== null) {
-	    var singleRowHeight = getSingleRowHeight(shadowTextarea) + heightAdjust;
+	    var singleRowHeight = getSingleRowHeight(shadowTextarea) - padding;
 	    if (minRows !== null) {
-	      minHeight = singleRowHeight * minRows;
+	      minHeight = singleRowHeight * minRows + padding + heightAdjust;
 	      height = Math.max(minHeight, height);
 	    }
 	    if (maxRows !== null) {
-	      maxHeight = singleRowHeight * maxRows;
+	      maxHeight = singleRowHeight * maxRows + padding + heightAdjust;
 	      height = Math.min(maxHeight, height);
 	    }
 	  }
 
 	  return {
-	    height: height, minHeight: minHeight, maxHeight: maxHeight
+	    height: height,
+	    minHeight: minHeight,
+	    maxHeight: maxHeight
 	  };
 	}
 
@@ -29242,7 +29246,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(233)();
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, "#tagField {\n  margin: 30px auto;\n}\nbody {\n  font-family: \"Helvetica Neue\", \"Helvetica\", \"Roboto\", \"Arial\", sans-serif;\n}\n.submit {\n  margin-top: 10px;\n  color: #ccc;\n  background: #fff;\n  border: 1px solid #ccc;\n  padding: .5em 1em;\n  font-size: 16px;\n  cursor: pointer;\n}\ntextarea {\n  padding: 10px;\n  border: 1px solid #ccc;\n}\n", ""]);
 
 /***/ },
 /* 233 */
@@ -29524,39 +29528,6 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
-
-/***/ },
-/* 235 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(236);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(234)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(true) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept(236, function() {
-				var newContent = __webpack_require__(236);
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 236 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(233)();
-	exports.push([module.id, "#tagField {\n  margin: 30px auto;\n}\nbody {\n  font-family: \"Helvetica Neue\", \"Helvetica\", \"Roboto\", \"Arial\", sans-serif;\n}\n.submit {\n  margin-top: 10px;\n  color: #ccc;\n  background: #fff;\n  border: 1px solid #ccc;\n  padding: .5em 1em;\n  font-size: 16px;\n  cursor: pointer;\n}\ntextarea {\n  padding: 10px;\n  border: 1px solid #ccc;\n}\n", ""]);
 
 /***/ }
 /******/ ]);
