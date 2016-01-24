@@ -9,7 +9,7 @@
 [![License](http://img.shields.io/npm/l/react-as-textarea.svg?style=flat-square)](LICENSE)
 [![npm download](https://img.shields.io/npm/dm/react-as-textarea.svg?style=flat-square)](https://npmjs.org/package/react-as-textarea)
 
-> Select
+> A React autosize textarea
 
 ## Installation
 
