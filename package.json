@@ -33,6 +33,7 @@
     "jquery": "^2.2.0",
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
+    "loader-utils": "^0.2.12",
     "mocha": "^2.3.4",
     "mocha-phantomjs": "^4.0.2",
     "mocha-phantomjs-coverage-hook": "0.0.1",
