@@ -24,6 +24,12 @@ gulp.task('build', ['clean'], () => {
     .pipe(gulp.dest('dist'));
 });
 
+gulp.task('demo', () => {
+  return gulp.src('./demo/index.jsx')
+    .pipe(gulpWebpack(require('./webpack.dev')))
+    .pipe(gulp.dest('demo'));
+});
+
 gulp.task('dev', cb => {
   env({
     NODE_ENV: 'development'
@@ -77,4 +83,4 @@ gulp.task('doc', function() {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('default', ['build', 'doc']);
+gulp.task('default', ['build', 'doc', 'demo']);
