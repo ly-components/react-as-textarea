@@ -13,7 +13,7 @@
 
 ## Demo
 
-[]()
+[Demo here](http://lingyucoder.github.io/react-as-textarea/demo/index.html)
 
 ## Installation
 
@@ -41,6 +41,8 @@ import Textarea from 'react-as-textarea';
 [insert]: # (end:src/index.jsx)
 
 ## Development
+
+[Test here](http://lingyucoder.github.io/react-as-textarea/test/test.html)
 
 ```bash
 $ npm run dev # startup local dev server
