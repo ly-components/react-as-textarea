@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const gulpWebpack = require('gulp-webpack');
+const gulpWebpack = require('webpack-stream');
 const open = require('open');
 const path = require('path');
 const express = require('express');
