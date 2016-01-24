@@ -7,7 +7,9 @@
     "dev": "gulp dev",
     "build": "gulp",
     "test": "gulp test",
-    "cov": "gulp coverage"
+    "cov": "gulp coverage",
+    "build-demo": "gulp demo",
+    "build-test": "gulp pre-test"
   },
   "author": "LingyuCoder",
   "license": "MIT",

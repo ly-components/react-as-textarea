@@ -24,13 +24,16 @@ gulp.task('build', ['clean'], () => {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('demo', () => {
+gulp.task('demo', ['clean'], () => {
   return gulp.src('./demo/index.jsx')
+    .pipe(env.set({
+      NODE_ENV: 'demo'
+    }))
     .pipe(gulpWebpack(require('./webpack.dev')))
     .pipe(gulp.dest('demo'));
 });
 
-gulp.task('dev', cb => {
+gulp.task('dev', ['clean'], cb => {
   env({
     NODE_ENV: 'development'
   });
@@ -83,4 +86,4 @@ gulp.task('doc', function() {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('default', ['build', 'doc', 'demo']);
+gulp.task('default', ['pre-test', 'build', 'doc', 'demo']);

@@ -13,7 +13,7 @@
 
 ## Demo
 
-[Demo here](http://lingyucoder.github.io/react-as-textarea/demo/index.html)
+[Online demo here](http://lingyucoder.github.io/react-as-textarea/demo/index.html)
 
 ## Installation
 
@@ -42,13 +42,15 @@ import Textarea from 'react-as-textarea';
 
 ## Development
 
-[Test here](http://lingyucoder.github.io/react-as-textarea/test/test.html)
+[Online test page here](http://lingyucoder.github.io/react-as-textarea/test/test.html)
 
 ```bash
 $ npm run dev # startup local dev server
 $ npm run build # build
 $ npm run test # run tests
 $ npm run cov # run coverage
+$ npm run build-demo # build demo, auto run in 'npm run build'
+$ npm run build-test # build test, auto run in 'npm run build'
 ```
 
 ## License
