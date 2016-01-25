@@ -13,7 +13,9 @@ const cmd = command => execSync(command, {
   stdio: 'inherit'
 });
 
-gulp.task('clean', cb => del(['dist', 'coverage'], cb));
+gulp.task('clean', cb => del(['dist'], cb));
+
+gulp.task('clean-test', cb => del(['coverage'], cb));
 
 gulp.task('build', ['clean'], () => {
   return gulp.src('./src/index.jsx')
@@ -24,7 +26,7 @@ gulp.task('build', ['clean'], () => {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('demo', ['clean'], () => {
+gulp.task('demo', () => {
   return gulp.src('./demo/index.jsx')
     .pipe(env.set({
       NODE_ENV: 'demo'
@@ -33,7 +35,7 @@ gulp.task('demo', ['clean'], () => {
     .pipe(gulp.dest('demo'));
 });
 
-gulp.task('dev', ['clean'], cb => {
+gulp.task('dev', cb => {
   env({
     NODE_ENV: 'development'
   });
@@ -59,7 +61,7 @@ gulp.task('dev', ['clean'], cb => {
   });
 });
 
-gulp.task('pre-test', ['clean'], () => {
+gulp.task('pre-test', ['clean-test'], () => {
   return gulp.src('./test/test.jsx')
     .pipe(env.set({
       NODE_ENV: 'test'
